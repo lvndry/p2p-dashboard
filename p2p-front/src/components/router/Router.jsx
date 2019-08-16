@@ -10,8 +10,8 @@ export default function AppRouter() {
             <Router>
                 <Route exact path='/' component={Login} />
                 <Route exact path='/login' component={Login} />
-                <Route exact path ='/dashboard' component={Dashboard} />
+                <Route exact path='/dashboard' component={Dashboard} />
             </Router>
         </div>
-    )
+    );
 }
