@@ -1,4 +1,5 @@
 // From: https://stackoverflow.com/a/18650828
+
 export function formatBytes(bytes, decimals = 2) {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;

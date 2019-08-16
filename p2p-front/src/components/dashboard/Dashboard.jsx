@@ -21,9 +21,7 @@ export default class Dashboard extends React.Component {
     async UNSAFE_componentWillMount() {
         const session_token = localStorage.getItem('session_token');
         const { from, to } = this.state;
-        const resp = await request('POST', '/bandwidth', { session_token, from, to })
-        console.log(resp);
-        const { data } = resp;
+        const { data } = await request('POST', '/bandwidth', { session_token, from, to })
         const cdn = data.cdn.map((point, index) => {
             const [x ,y] = point
             return { x, y };
@@ -90,6 +88,14 @@ export default class Dashboard extends React.Component {
         };
 
         const options = {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        const label = data.datasets[tooltipItem.datasetIndex].label || '';
+                        return `${label}: ${formatBytes(tooltipItem.value)}`;                       
+                    }
+                }
+            },
             scales: {
                 xAxes: [{
                     type: 'time',
