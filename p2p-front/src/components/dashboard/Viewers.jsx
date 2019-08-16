@@ -38,6 +38,14 @@ export default function Viewers(props) {
             display: true,
             text: 'Capacity offload',
         },
+        scales: {
+            xAxes: [{
+                type: 'time',
+                time: {
+                    unit: 'day',
+                }
+            }]
+        }
     };
 
     return (

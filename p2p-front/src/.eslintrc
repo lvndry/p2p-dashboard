@@ -13,5 +13,11 @@
 		"jest": true,
 		"es6": true
 	},
-	"rules": {}
+	"rules": {
+        "indent": "off",
+        "camelcase": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off",
+        "react/prop-types": "off",
+    }
 }

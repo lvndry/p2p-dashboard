@@ -1,15 +1,23 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import 'chartjs-plugin-annotation';
 
 import { getDates } from '../../lib/date';
 import { formatBytes } from '../../lib/math';
 
-export default function Offload(props) {
-    if (!props.p2p || !props.cdn) {
+export default function Offload({
+    cdn,
+    p2p,
+    maxCdn,
+    maxP2p,
+    from,
+    to,
+}) {
+    if (!p2p || !cdn) {
         return null;
     }
 
-    const labels = getDates(new Date(props.from), new Date(props.to))
+    const labels = getDates(new Date(from), new Date(to));
     const data = {
         labels,
         datasets: [
@@ -32,7 +40,7 @@ export default function Offload(props) {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: props.cdn
+                data: cdn,
             },
             {
                 label: 'P2P',
@@ -53,19 +61,20 @@ export default function Offload(props) {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: props.p2p
-            }
-        ]
+                data: p2p,
+            },
+        ],
     };
 
     const options = {
+        responsive: true,
         tooltips: {
             callbacks: {
-                label: function(tooltipItem, data) {
-                    const label = data.datasets[tooltipItem.datasetIndex].label || '';
-                    return `${label}: ${formatBytes(tooltipItem.value)}`;                       
-                }
-            }
+                label: (tooltipItem, info) => {
+                    const label = info.datasets[tooltipItem.datasetIndex].label || '';
+                    return `${label}: ${formatBytes(tooltipItem.value)}`;
+                },
+            },
         },
         title: {
             display: true,
@@ -76,17 +85,44 @@ export default function Offload(props) {
                 type: 'time',
                 time: {
                     unit: 'day',
-                }
+                },
             }],
             yAxes: [{
                 stacked: true,
                 ticks: {
-                    callback: function(value, index) {
-                        return formatBytes(value)
-                    }
-                }
-            }]
-        }
+                    callback: (value) => formatBytes(value),
+                },
+            }],
+        },
+        annotation: {
+            annotations: [{
+                drawTime: 'afterDatasetsDraw',
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: maxP2p,
+                borderColor: 'rgba(163,29,45,0.4)',
+                borderWidth: 4,
+                borderDash: [8, 2],
+                label: {
+                    content: `Maximum throughput  ${formatBytes(maxP2p)}`,
+                    enabled: true,
+                },
+            }, {
+                drawTime: 'afterDatasetsDraw',
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                borderColor: 'rgba(25, 94, 52, 0.4)',
+                value: maxCdn,
+                borderWidth: 4,
+                borderDash: [8, 2],
+                label: {
+                    content: `Maximum CDN: ${formatBytes(maxCdn)}`,
+                    enabled: true,
+                },
+            }],
+        },
     };
 
     return (
