@@ -5,6 +5,10 @@ import { getDates } from '../../lib/date';
 import { formatBytes } from '../../lib/math';
 
 export default function Offload(props) {
+    if (!props.p2p || !props.cdn) {
+        return null;
+    }
+
     const labels = getDates(new Date(props.from), new Date(props.to))
     const data = {
         labels,

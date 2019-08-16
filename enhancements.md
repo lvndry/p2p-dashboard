@@ -5,3 +5,5 @@
 - Create more components
 
 - Use of React Hooks
+
+- Create one branch per task
