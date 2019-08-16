@@ -4,21 +4,22 @@ import { withRouter } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { request } from '../../lib/http';
 
-async function onLogout() {
-    await request('POST', '/logout', { session_token: localStorage.getItem('session_token') });
-    localStorage.removeItem('session_token');
-}
-
-export default class Header extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.onLogout = this.onLogout.bind(this);
     }
 
+    async onLogout() {
+        await request('POST', '/logout', { session_token: localStorage.getItem('session_token') });
+        localStorage.removeItem('session_token');
+        this.props.history.push('/');
+    }
 
     render() {
         const LogoutButton = localStorage.getItem('session_token')
-            ? <Button onClick={onLogout}>Logout</Button> : null;
+            ? <Button onClick={this.onLogout}>Logout</Button> : null;
         return (
            <div>
                <Button href='/login'>
@@ -29,3 +30,5 @@ export default class Header extends React.Component {
         );
     }
 }
+
+export default withRouter(Header);
