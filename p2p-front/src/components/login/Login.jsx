@@ -26,7 +26,6 @@ class Login extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const { identifiant, password } = this.state;
-        console.log(identifiant, password);
         const { data } = await request('POST', '/auth', { identifiant, password });
         localStorage.setItem('session_token', data.session_token);
         this.props.history.push('/dashboard')
