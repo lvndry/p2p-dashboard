@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 
 import { request } from '../../lib/http';
 import { getDates } from '../../lib/date';
+import { formatBytes } from '../../lib/math';
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -35,12 +36,10 @@ export default class Dashboard extends React.Component {
             cdn,
             p2p,
         })
-        console.log(this.state.cdn, this.state.p2p);
     }
 
     render() {
         const labels = getDates(new Date(this.state.from), new Date(this.state.to))
-        console.log(labels);
         
         const data = {
             labels,
@@ -99,7 +98,12 @@ export default class Dashboard extends React.Component {
                     }
                 }],
                 yAxes: [{
-                    stacked: true
+                    stacked: true,
+                    ticks: {
+                        callback: function(value, index) {
+                            return formatBytes(value)
+                        }
+                    }
                 }]
             }
         };
