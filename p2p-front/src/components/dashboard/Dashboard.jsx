@@ -1,6 +1,9 @@
 import React from 'react';
+import { Col, Row } from 'react-bootstrap';
 
 import { request } from '../../lib/http';
+
+import DatePicker from './DatePicker';
 import Offload from './Offload';
 import Viewers from './Viewers';
 
@@ -67,19 +70,28 @@ export default class Dashboard extends React.Component {
         return (
             <div>
                 <h2>Dashboard</h2>
-                <Offload
-                    maxCdn={maxCdn}
-                    maxP2p={maxP2p}
-                    from={from}
-                    to={to}
-                    cdn={cdn}
-                    p2p={p2p}
-                />
-                <Viewers
-                    from={from}
-                    to={to}
-                    audience={audience}
-                />
+                <article>
+                    <Offload
+                        maxCdn={maxCdn}
+                        maxP2p={maxP2p}
+                        from={from}
+                        to={to}
+                        cdn={cdn}
+                        p2p={p2p}
+                    />
+                </article>
+                <article>
+                    <Viewers
+                        from={from}
+                        to={to}
+                        audience={audience}
+                    />
+                </article>
+                <Row>
+                    <Col xs={12} md={8}>
+                        <DatePicker />
+                    </Col>
+                </Row>
             </div>
         );
     }

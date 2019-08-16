@@ -7,7 +7,7 @@ export default function Viewers(props) {
     if (!props.audience) {
         return null;
     }
-    const labels = getDates(new Date(props.from), new Date(props.to))
+    const labels = getDates(new Date(props.from), new Date(props.to));
     const data = {
         labels,
         datasets: [
@@ -29,9 +29,9 @@ export default function Viewers(props) {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: props.audience
-            }
-        ]
+                data: props.audience,
+            },
+        ],
     };
     const options = {
         title: {
@@ -43,14 +43,14 @@ export default function Viewers(props) {
                 type: 'time',
                 time: {
                     unit: 'day',
-                }
-            }]
-        }
+                },
+            }],
+        },
     };
 
     return (
         <div>
             <Line data={data} options={options} />
         </div>
-    )
+    );
 }
