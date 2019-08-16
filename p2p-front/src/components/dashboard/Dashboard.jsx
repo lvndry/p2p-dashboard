@@ -2,7 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 import { request } from '../../lib/http';
-
+import { getDates } from '../../lib/date';
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -39,8 +39,11 @@ export default class Dashboard extends React.Component {
     }
 
     render() {
+        const labels = getDates(new Date(this.state.from), new Date(this.state.to))
+        console.log(labels);
+        
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels,
             datasets: [
                 {
                     label: 'CDN',
@@ -87,10 +90,27 @@ export default class Dashboard extends React.Component {
             ]
         };
 
+        const options = {
+            scales: {
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    }
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        };
+
         return (
             <div>
                 <h2>Dashboard</h2>
-                <Line data={data} />
+                <Line
+                    data={data}
+                    options={options}
+                />
             </div>
         );
     }
