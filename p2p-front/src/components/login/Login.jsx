@@ -63,7 +63,6 @@ class Login extends React.Component {
                         <Form.Control
                             type='text'
                             value={this.state.password}
-                            onChange={() => {}}
                             disabled
                         />
                     </Form.Group>

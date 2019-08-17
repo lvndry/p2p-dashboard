@@ -1,11 +1,12 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
 
 import { request } from '../../lib/http';
 
 import DatePicker from './DatePicker';
 import Offload from './Offload';
 import Viewers from './Viewers';
+
+import './Dashboard.css';
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -68,7 +69,7 @@ export default class Dashboard extends React.Component {
         } = this.state;
 
         return (
-            <div>
+            <div className='container'>
                 <h2>Dashboard</h2>
                 <article>
                     <Offload
@@ -87,11 +88,9 @@ export default class Dashboard extends React.Component {
                         audience={audience}
                     />
                 </article>
-                <Row>
-                    <Col xs={12} md={8}>
-                        <DatePicker />
-                    </Col>
-                </Row>
+                <article>
+                    <DatePicker />
+                </article>
             </div>
         );
     }
