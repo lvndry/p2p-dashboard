@@ -73,11 +73,15 @@ export default class Offload extends React.PureComponent {
         const options = {
             responsive: true,
             tooltips: {
+                mode: 'index',
                 callbacks: {
-                    title: (tooltipItem) => moment(tooltipItem[0].label).format('dddd, MMMM DD, YYYY h:mm a'),
+                    title: (tooltipItem) => moment(new Date(tooltipItem[0].label)).format('dddd, MMMM DD, YYYY h:mm a'),
                     label: (tooltipItem, info) => {
                         const label = info.datasets[tooltipItem.datasetIndex].label || '';
                         return `${label}: ${formatBytes(tooltipItem.value)}`;
+                    },
+                    footer: (tooltipItem) => {
+                      return `Total: ${formatBytes(tooltipItem[0].yLabel + tooltipItem[1].yLabel)}`;
                     },
                 },
             },
