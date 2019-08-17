@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation';
 
@@ -73,6 +74,7 @@ export default class Offload extends React.PureComponent {
             responsive: true,
             tooltips: {
                 callbacks: {
+                    title: (tooltipItem) => moment(tooltipItem[0].label).format('dddd, MMMM DD, YYYY h:mm a'),
                     label: (tooltipItem, info) => {
                         const label = info.datasets[tooltipItem.datasetIndex].label || '';
                         return `${label}: ${formatBytes(tooltipItem.value)}`;

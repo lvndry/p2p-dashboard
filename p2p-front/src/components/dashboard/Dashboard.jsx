@@ -46,12 +46,10 @@ export default class Dashboard extends React.Component {
             to,
             aggregate: 'max',
         });
-
         const { data: { audience } } = await request('POST', '/audience', { session_token, from, to });
+
         const cdnPoints = getPoints(cdn);
-
         const p2pPoints = getPoints(p2p);
-
         const audiencePoints = getPoints(audience);
 
         this.setState({
