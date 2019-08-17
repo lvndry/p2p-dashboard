@@ -1,6 +1,6 @@
 # P2P Dashboard
 
-## Development
+## Getting Started
 
 Start the backend
 `cd p2p-back && yarn install && yarn start`
