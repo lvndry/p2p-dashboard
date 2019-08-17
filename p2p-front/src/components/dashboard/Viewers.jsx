@@ -39,7 +39,9 @@ export default class Viewers extends React.PureComponent {
         const options = {
             title: {
                 display: true,
-                text: 'Capacity offload',
+                text: 'Concurrent Viewers',
+                fontSize: '20',
+                position: 'top',
             },
             scales: {
                 xAxes: [{

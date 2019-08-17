@@ -86,6 +86,8 @@ export default class Offload extends React.PureComponent {
             title: {
                 display: true,
                 text: 'Capacity offload',
+                fontSize: '20',
+                position: 'top',
             },
             scales: {
                 xAxes: [{
