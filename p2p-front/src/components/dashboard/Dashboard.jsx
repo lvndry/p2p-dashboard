@@ -8,6 +8,13 @@ import Viewers from './Viewers';
 
 import './Dashboard.css';
 
+function getPoints(array) {
+    return array.map((point) => {
+        const [x, y] = point;
+        return { x, y };
+    });
+}
+
 export default class Dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -41,20 +48,11 @@ export default class Dashboard extends React.Component {
         });
 
         const { data: { audience } } = await request('POST', '/audience', { session_token, from, to });
-        const cdnPoints = cdn.map((point) => {
-            const [x, y] = point;
-            return { x, y };
-        });
+        const cdnPoints = getPoints(cdn);
 
-        const p2pPoints = p2p.map((point) => {
-            const [x, y] = point;
-            return { x, y };
-        });
+        const p2pPoints = getPoints(p2p);
 
-        const audiencePoints = audience.map((point) => {
-            const [x, y] = point;
-            return { x, y };
-        });
+        const audiencePoints = getPoints(audience);
 
         this.setState({
             cdn: cdnPoints,

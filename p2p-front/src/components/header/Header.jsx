@@ -19,7 +19,7 @@ class Header extends React.Component {
 
     render() {
         const LogoutButton = localStorage.getItem('session_token')
-            ? <Button className='nav-link alert-danger' href='#' onClick={this.onLogout}>Logout</Button> : null;
+            ? <Button className='nav-link alert-danger' onClick={this.onLogout}>Logout</Button> : null;
         return (
            <Row className='navbar navbar-expand'>
                <div className='nav-item'>
