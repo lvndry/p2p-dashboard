@@ -22,6 +22,8 @@
         "react/destructuring-assignment": "off",
         "jsx-quotes": "off",
         "import/prefer-default-export": "off",
-        "prefer-template": "off"
+        "prefer-template": "off",
+        "jsx-a11y/interactive-supports-focus": "off",
+        "react/jsx-props-no-spreading": "off"
     }
 }

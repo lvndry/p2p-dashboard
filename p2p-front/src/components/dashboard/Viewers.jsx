@@ -7,6 +7,7 @@ export default function Viewers(props) {
     if (!props.audience) {
         return null;
     }
+
     const labels = getDates(new Date(props.from), new Date(props.to));
     const data = {
         labels,
@@ -33,6 +34,7 @@ export default function Viewers(props) {
             },
         ],
     };
+
     const options = {
         title: {
             display: true,
@@ -40,6 +42,7 @@ export default function Viewers(props) {
         },
         scales: {
             xAxes: [{
+                display: false,
                 type: 'time',
                 time: {
                     unit: 'day',
