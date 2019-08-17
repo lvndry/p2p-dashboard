@@ -65,7 +65,7 @@ export default class Dashboard extends React.Component {
         });
     }
 
-    // Date: timestamp, type: 'start' | 'end
+    // Date: timestamp, type: 'start'|'end
     async OnDateChange(date, type) {
         if (type === 'start') {
             this.setState({
@@ -118,6 +118,7 @@ export default class Dashboard extends React.Component {
                         onDateChange={this.OnDateChange}
                     />
                 </article>
+                <div className='footer' style={{ marginTop: '50px' }} />
             </div>
         );
     }
