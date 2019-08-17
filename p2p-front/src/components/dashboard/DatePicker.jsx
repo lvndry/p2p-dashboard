@@ -11,8 +11,17 @@ export default class DatePicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            values: [25, 75],
+            values: [this.props.from, this.props.to],
         };
+        this.onRangeChange = this.onRangeChange.bind(this);
+    }
+
+    onRangeChange(values) {
+      if (values[0] !== this.state.values[0]) {
+        this.props.onDateChange(values[0], 'start');
+      } else if (values[1] !== this.state.values[1]) {
+        this.props.onDateChange(values[1], 'end');
+      }
     }
 
     render() {
@@ -22,7 +31,7 @@ export default class DatePicker extends React.Component {
                 <ReactDatePicker
                       selected={this.props.from}
                       dateFormat='dd MMMM yyyy'
-                      onChange={(date) => this.props.onDateChange(date, 'start')}
+                      onChange={(date) => this.props.onDateChange(date.getTime(), 'start')}
                       dropdownMode='select'
                 />
               </Col>
@@ -36,10 +45,11 @@ export default class DatePicker extends React.Component {
                 >
                   <Range
                     values={this.state.values}
-                    step={0.1}
-                    min={0}
-                    max={100}
+                    step={1000}
+                    min={this.props.from}
+                    max={this.props.to}
                     onChange={(values) => {
+                      setTimeout(() => this.onRangeChange(values), 1500);
                       this.setState({ values });
                     }}
                     renderTrack={({ props, children }) => (
@@ -63,8 +73,8 @@ export default class DatePicker extends React.Component {
                             background: getTrackBackground({
                               values: this.state.values,
                               colors: ['#ccc', '#548BF4', '#ccc'],
-                              min: 0,
-                              max: 100,
+                              min: this.props.from,
+                              max: this.props.to,
                             }),
                             alignSelf: 'center',
                           }}
@@ -99,7 +109,7 @@ export default class DatePicker extends React.Component {
                     )}
                   />
                   <output style={{ marginTop: '30px' }} id="output">
-                      {`${this.state.values[0].toFixed(1)} - ${this.state.values[1].toFixed(1)}`}
+                   {`${this.state.values[0].toFixed(1)} - ${this.state.values[1].toFixed(1)}`}
                   </output>
                 </div>
               </Col>
@@ -109,7 +119,7 @@ export default class DatePicker extends React.Component {
                   className='datepicker center'
                   selected={this.props.to}
                   dateFormat='d MMMM yyyy'
-                  onChange={(date) => this.props.onDateChange(date, 'end')}
+                  onChange={(date) => this.props.onDateChange(date.getTime(), 'end')}
                   minDate={this.props.from}
                   dropdownMode='select'
                 />

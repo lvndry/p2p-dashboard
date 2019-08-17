@@ -39,6 +39,7 @@ export default class Dashboard extends React.Component {
             to,
             aggregate: 'max',
         });
+
         const { data: { audience } } = await request('POST', '/audience', { session_token, from, to });
         const cdnPoints = cdn.map((point) => {
             const [x, y] = point;
@@ -49,10 +50,12 @@ export default class Dashboard extends React.Component {
             const [x, y] = point;
             return { x, y };
         });
+
         const audiencePoints = audience.map((point) => {
             const [x, y] = point;
             return { x, y };
         });
+
         this.setState({
             cdn: cdnPoints,
             maxCdn,
@@ -62,15 +65,16 @@ export default class Dashboard extends React.Component {
         });
     }
 
+    // Date: timestamp, type: 'start' | 'end
     async OnDateChange(date, type) {
         if (type === 'start') {
             this.setState({
-                from: date.getTime(),
+                from: date,
             });
         }
         if (type === 'end') {
             this.setState({
-                to: date.getTime(),
+                to: date,
             });
         }
         await this.getData();
