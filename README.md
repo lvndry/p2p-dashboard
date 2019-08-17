@@ -7,3 +7,5 @@ Start the backend
 
 Then in an other terminal go on p2p-front and start front server
 `cd p2p-front && yarn install && yarn start`
+
+**Caution: Browsers do not authorize CORS requests for localhost. You have to open Chrome with `--disable-web-security --user-data-dir='/tmp` options**
