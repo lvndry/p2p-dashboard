@@ -80,9 +80,7 @@ export default class Offload extends React.PureComponent {
                         const label = info.datasets[tooltipItem.datasetIndex].label || '';
                         return `${label}: ${formatBytes(tooltipItem.value)}`;
                     },
-                    footer: (tooltipItem) => {
-                      return `Total: ${formatBytes(tooltipItem[0].yLabel + tooltipItem[1].yLabel)}`;
-                    },
+                    footer: (tooltipItem) => `Total: ${formatBytes(tooltipItem[0].yLabel + tooltipItem[1].yLabel)}`,
                 },
             },
             title: {
