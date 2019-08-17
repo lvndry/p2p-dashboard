@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 import { request } from '../../lib/http';
 
@@ -19,14 +19,13 @@ class Header extends React.Component {
 
     render() {
         const LogoutButton = localStorage.getItem('session_token')
-            ? <Button onClick={this.onLogout}>Logout</Button> : null;
+            ? <Button className='nav-link alert-danger' href='#' onClick={this.onLogout}>Logout</Button> : null;
         return (
-           <div>
-               <Button href='/login'>
-                   Login
-               </Button>
-               {LogoutButton}
-           </div>
+           <Row className='navbar navbar-expand'>
+               <div className='nav-item'>
+                {LogoutButton}
+               </div>
+           </Row>
         );
     }
 }

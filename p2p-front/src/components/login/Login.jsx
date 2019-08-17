@@ -71,7 +71,7 @@ class Login extends React.Component {
                     type='submit'
                     variant='primary'
                     >
-                        Submit
+                        Login
                     </Button>
                 </Form>
             </div>
