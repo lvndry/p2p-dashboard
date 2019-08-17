@@ -11,20 +11,8 @@ export default class DatePicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: new Date(2019, 7, 1),
-            endDate: new Date(2019, 7, 17),
             values: [25, 75],
         };
-        this.handleStartChange = this.handleStartChange.bind(this);
-        this.handleEndChange = this.handleEndChange.bind(this);
-    }
-
-    handleStartChange(date) {
-        this.setState({ startDate: date });
-    }
-
-    handleEndChange(date) {
-        this.setState({ endDate: date });
     }
 
     render() {
@@ -32,7 +20,7 @@ export default class DatePicker extends React.Component {
             <Row>
               <Col>
                 <ReactDatePicker
-                      selected={this.state.startDate}
+                      selected={this.props.from}
                       dateFormat='dd MMMM yyyy'
                       onChange={this.handleStartChange}
                       dropdownMode='select'
@@ -120,10 +108,10 @@ export default class DatePicker extends React.Component {
                 <ReactDatePicker
                   style={{ backgroundColor: 'blue' }}
                   className='datepicker center'
-                  selected={this.state.endDate}
+                  selected={this.props.to}
                   dateFormat='d MMMM yyyy'
                   onChange={this.handleEndChange}
-                  minDate={this.state.startDate}
+                  minDate={this.props.from}
                   dropdownMode='select'
                 />
               </Col>

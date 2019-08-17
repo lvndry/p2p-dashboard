@@ -57,6 +57,10 @@ export default class Dashboard extends React.Component {
         });
     }
 
+    OnDateChange(event) {
+        console.log(event, this);
+    }
+
     render() {
         const {
             from,
@@ -89,7 +93,10 @@ export default class Dashboard extends React.Component {
                     />
                 </article>
                 <article>
-                    <DatePicker />
+                    <DatePicker
+                        from={from}
+                        to={to}
+                    />
                 </article>
             </div>
         );
