@@ -22,9 +22,14 @@ export default class Dashboard extends React.Component {
             p2p: [],
             audience: [],
         };
+        this.OnDateChange = this.OnDateChange.bind(this);
     }
 
     async UNSAFE_componentWillMount() {
+        await this.getData();
+    }
+
+    async getData() {
         const session_token = localStorage.getItem('session_token');
         const { from, to } = this.state;
         const { data: { cdn, p2p } } = await request('POST', '/bandwidth', { session_token, from, to });
@@ -57,8 +62,18 @@ export default class Dashboard extends React.Component {
         });
     }
 
-    OnDateChange(event) {
-        console.log(event, this);
+    async OnDateChange(date, type) {
+        if (type === 'start') {
+            this.setState({
+                from: date.getTime(),
+            });
+        }
+        if (type === 'end') {
+            this.setState({
+                to: date.getTime(),
+            });
+        }
+        await this.getData();
     }
 
     render() {
@@ -77,12 +92,12 @@ export default class Dashboard extends React.Component {
                 <h2>Dashboard</h2>
                 <article>
                     <Offload
-                        maxCdn={maxCdn}
-                        maxP2p={maxP2p}
                         from={from}
                         to={to}
                         cdn={cdn}
                         p2p={p2p}
+                        maxCdn={maxCdn}
+                        maxP2p={maxP2p}
                     />
                 </article>
                 <article>
@@ -96,6 +111,7 @@ export default class Dashboard extends React.Component {
                     <DatePicker
                         from={from}
                         to={to}
+                        onDateChange={this.OnDateChange}
                     />
                 </article>
             </div>
