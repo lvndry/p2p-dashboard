@@ -24,6 +24,7 @@
         "import/prefer-default-export": "off",
         "prefer-template": "off",
         "jsx-a11y/interactive-supports-focus": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "arrow-body-style": "off"
     }
 }

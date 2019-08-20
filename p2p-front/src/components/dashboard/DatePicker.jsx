@@ -4,7 +4,6 @@ import ReactDatePicker from 'react-datepicker';
 import { Range, getTrackBackground } from 'react-range';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import './DatePicker.css';
 
 export default class DatePicker extends React.Component {
@@ -119,8 +118,7 @@ export default class DatePicker extends React.Component {
             </Col>
             <Col>
               <ReactDatePicker
-                style={{ backgroundColor: 'blue' }}
-                className='datepicker center'
+                className='input'
                 selected={this.props.to}
                 dateFormat='d MMMM yyyy'
                 onChange={(date) => {

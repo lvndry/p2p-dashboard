@@ -74,6 +74,9 @@ export default class Offload extends React.PureComponent {
             responsive: true,
             tooltips: {
                 mode: 'index',
+                titleFontSize: 17,
+                bodyFontSize: 15,
+                footerFontSize: 15,
                 callbacks: {
                     title: (tooltipItem) => moment(new Date(tooltipItem[0].label)).format('dddd, MMMM DD, YYYY h:mm a'),
                     label: (tooltipItem, info) => {

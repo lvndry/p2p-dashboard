@@ -37,6 +37,11 @@ export default class Viewers extends React.PureComponent {
         };
 
         const options = {
+            tooltips: {
+                titleFontSize: 17,
+                bodyFontSize: 15,
+                footerFontSize: 15,
+            },
             title: {
                 display: true,
                 text: 'Concurrent Viewers',

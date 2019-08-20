@@ -1,0 +1,14 @@
+{
+  "name": "p2p-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["p2p-back", "p2p-front"],
+  "scripts": {
+    "start-front": "cd p2p-front && yarn start",
+    "start-back": "cd p2p-back && yarn start",
+    "start": "concurrently npm:start-*"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.2"
+  }
+}
