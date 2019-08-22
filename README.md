@@ -1,5 +1,7 @@
 # P2P Dashboard
 
+Try the demo [here](http://ec2-3-14-151-99.us-east-2.compute.amazonaws.com/)
+
 ## Getting Started
 
 Start the backend
