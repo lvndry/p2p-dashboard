@@ -18,5 +18,3 @@ cd p2p-dashboard
 yarn install
 yarn start
 ```
-
-**Caution: Browsers do not authorize CORS requests for localhost. You have to open Chrome with `--disable-web-security --user-data-dir='/tmp` options**

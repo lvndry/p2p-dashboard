@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
+app.use(cors());
 
 // Settings
 const SERVER_PORT = 8080; // Listening port
@@ -611,8 +612,6 @@ app.post('/audience', (request, response) => {
     console.log('POST, /audience 403');
   }
 });
-
-app.use(cors());
 
 // Start listen to requests
 app.listen(SERVER_PORT, () => {
